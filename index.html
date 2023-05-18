@@ -14,13 +14,26 @@
       return formattedDate;
     }
 
+    function formatReiwaMonth(dateStr) {
+      const month = parseInt(dateStr.slice(-2));
+      const year = parseInt(dateStr.slice(0, -2));
+
+      const formattedMonth = `${eraName}${year}年${month}月`;
+      return formattedMonth;
+    }
+
     function updateFormattedDate() {
       const inputElement = document.getElementById('numberInput');
       const dateStr = inputElement.value;
-      const formattedDate = formatReiwaDate(dateStr);
 
-      const outputElement = document.getElementById('output');
-      outputElement.textContent = formattedDate;
+      const formattedDate = formatReiwaDate(dateStr);
+      const formattedMonth = formatReiwaMonth(dateStr);
+
+      const dateOutputElement = document.getElementById('dateOutput');
+      dateOutputElement.textContent = formattedDate;
+
+      const monthOutputElement = document.getElementById('monthOutput');
+      monthOutputElement.textContent = formattedMonth;
     }
   </script>
 </head>
@@ -28,6 +41,13 @@
   <h1>数字フォーマット</h1>
   <label for="numberInput">数字を入力してください:</label>
   <input type="text" id="numberInput" oninput="updateFormattedDate()">
-  <div id="output"></div>
+  <div>
+    <h2>日付結果:</h2>
+    <div id="dateOutput"></div>
+  </div>
+  <div>
+    <h2>月結果:</h2>
+    <div id="monthOutput"></div>
+  </div>
 </body>
 </html>

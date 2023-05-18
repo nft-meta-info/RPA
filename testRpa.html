@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>数字フォーマット</title>
+  <script>
+    const eraName = "令和";
+
+    function formatReiwaDate(dateStr) {
+      const day = parseInt(dateStr.slice(-2));
+      const month = parseInt(dateStr.slice(-4, -2));
+      const year = parseInt(dateStr.slice(0, -4));
+
+      const formattedDate = `${eraName}${year}年${month}月${day}日`;
+      return formattedDate;
+    }
+
+    function updateFormattedDate() {
+      const inputElement = document.getElementById('numberInput');
+      const dateStr = inputElement.value;
+      const formattedDate = formatReiwaDate(dateStr);
+
+      const outputElement = document.getElementById('output');
+      outputElement.textContent = formattedDate;
+    }
+  </script>
+</head>
+<body>
+  <h1>数字フォーマット</h1>
+  <label for="numberInput">数字を入力してください:</label>
+  <input type="text" id="numberInput" oninput="updateFormattedDate()">
+  <div id="output"></div>
+</body>
+</html>
